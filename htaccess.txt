@@ -1,0 +1,21 @@
+RewriteEngine On
+
+# Remove .php extension from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^([^\.]+)$ $1 [NC,L]
+
+# Admin section URL rewriting
+RewriteRule ^admin/?$ admin/dashboard.php [L]
+RewriteRule ^admin/login/?$ admin/login.php [L]
+RewriteRule ^admin/logout/?$ admin/logout.php [L]
+RewriteRule ^admin/settings/?$ admin/settings.php [L]
+RewriteRule ^admin/create/?$ admin/create_transaction.php [L]
+RewriteRule ^admin/transactions/?$ admin/transactions.php [L]
+RewriteRule ^admin/transaction/([^/]+)/?$ admin/transaction.php?id=$1 [L]
+RewriteRule ^admin/delete_transaction/([^/]+)/?$ admin/delete_transaction.php?id=$1 [L]
+
+# Public section URL rewriting
+RewriteRule ^checkout/([^/]+)/?$ public/checkout.php?order_id=$1 [L]
+RewriteRule ^success/([^/]+)/?$ public/success.php?order_id=$1 [L]
+RewriteRule ^failed/([^/]+)/?$ public/failed.php?order_id=$1 [L] 
