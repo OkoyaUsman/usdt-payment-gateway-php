@@ -71,7 +71,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <div class="flex-shrink-0 flex items-center">
-                            <a href="<?php echo BASE_URL; ?>/admin/" class="text-xl font-bold text-indigo-600"><?php echo SITE_NAME; ?></a>
+                            <a href="<?php echo BASE_URL; ?>/" class="text-xl font-bold text-indigo-600"><?php echo SITE_NAME; ?></a>
                         </div>
                         <!-- Desktop Menu -->
                         <div class="hidden sm:ml-6 sm:flex sm:space-x-8 desktop-menu">
