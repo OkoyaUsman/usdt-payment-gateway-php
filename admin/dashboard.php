@@ -21,8 +21,20 @@ $recentTransactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt = $db->query("SELECT * FROM settings LIMIT 1");
 $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$walletApi = file_get_contents("https://apilist.tronscan.org/api/accountv2?address={$settings['usdt_address']}");
-$walletData = json_decode($walletApi, true);
+$url = "https://apilist.tronscan.org/api/accountv2?address={$settings['usdt_address']}";
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "TRON-PRO-API-KEY: {$settings['tron_api_key']}"
+]);
+
+$response = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo 'Curl error: ' . curl_error($ch);
+} else {
+    $walletData = json_decode($response, true);
+}
+
 $walletBalance = intval($walletData['withPriceTokens'][1]['balance'])/(10**6);
 ?>
 

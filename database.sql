@@ -16,6 +16,7 @@ CREATE TABLE `admin_users` (
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
   `usdt_address` varchar(100) NOT NULL,
+  `tron_api_key` varchar(100) NOT NULL,
   `network` varchar(20) NOT NULL,
   `checkout_timeout` int(11) DEFAULT 1800,
   `check_interval` int(11) DEFAULT 30,
@@ -46,8 +47,8 @@ INSERT INTO `admin_users` (`id`, `username`, `password`, `email`, `created_at`, 
 (1, 'admin', '$2y$10$Lxbepuuz9CzBPwmsPGcifefPLmXQ9Wx7kWwzK45shi8r.OqcehH.G', 'admin@example.com', '2025-04-23 13:48:36', '2025-04-23 13:48:36');
 
 -- Insert default settings
-INSERT INTO `settings` (`id`, `usdt_address`, `network`, `checkout_timeout`, `check_interval`, `created_at`, `updated_at`) VALUES
-(1, 'TYKvowwuNfbWC28QALDbsgxRomxCNRfeCZ', 'TRC20', 3600, 60, '2025-04-23 13:46:07', '2025-04-24 07:24:13');
+INSERT INTO `settings` (`id`, `usdt_address`, `tron_api_key`, `network`, `checkout_timeout`, `check_interval`, `created_at`, `updated_at`) VALUES
+(1, 'TYKvowwuNfbWC28QALDbsgxRomxCNRfeCZ', '00000000-0000-0000-0000-000000000000', 'TRC20', 3600, 60, '2025-04-23 13:46:07', '2025-04-24 07:24:13');
 
 --
 -- Indexes for table `admin_users`

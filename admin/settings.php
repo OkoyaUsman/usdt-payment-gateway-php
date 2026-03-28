@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt = $db->prepare("UPDATE settings SET 
                 usdt_address = :usdt_address,
+                tron_api_key = :tron_api_key,
                 network = :network,
                 checkout_timeout = :checkout_timeout,
                 check_interval = :check_interval
@@ -24,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             $stmt->execute([
                 ':usdt_address' => $_POST['usdt_address'],
+                ':tron_api_key' => $_POST['tron_api_key'],
                 ':network' => $_POST['network'],
                 ':checkout_timeout' => $_POST['checkout_timeout'],
                 ':check_interval' => $_POST['check_interval']
@@ -105,7 +107,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div>
-            <label for="usdt_address" class="block text-sm font-medium text-gray-700">Network</label>
+            <label for="tron_api_key" class="block text-sm font-medium text-gray-700">Tron API Key</label>
+            <div class="mt-1">
+                <input type="text" name="tron_api_key" id="tron_api_key" 
+                    value="<?php echo htmlspecialchars($settings['tron_api_key']); ?>" 
+                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    <?php echo DEMO_MODE ? 'disabled' : ''; ?>>
+            </div>
+        </div>
+
+        <div>
+            <label for="network" class="block text-sm font-medium text-gray-700">Network</label>
             <input type="text" id="network" name="network" value="<?php echo htmlspecialchars($settings['network']); ?>" required
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" <?php echo DEMO_MODE ? 'disabled' : ''; ?>>
         </div>
